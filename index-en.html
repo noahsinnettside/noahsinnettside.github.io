@@ -10,6 +10,23 @@
     button { background: red; color: black; border: none; padding: 8px; cursor: pointer; }
     input { background: #111; color: red; border: 1px solid red; }
     .content { padding: 20px; }
+
+    /* Container to keep search and clock together */
+    .search-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    /* Bigger Clock Styling */
+    #clock {
+      color: red;
+      font-family: 'Courier New', Courier, monospace; /* Digital look */
+      font-size: 40px; /* Big size */
+      font-weight: bold;
+      text-shadow: 0 0 10px red; /* Glow effect */
+    }
   </style>
 </head>
 <body>
@@ -36,10 +53,15 @@
 <div class="content">
   <p><a href="index.html">Norsk versjon av nettsiden</a></p>
   <h1>Good websites to visit, if you wish:</h1>
-  <div style="margin-bottom: 25px;">
-    <input type="text" placeholder="Search the website..." onfocus="alert('haha you think I actually bothered to code this? no way'); this.blur();">
-    <button>Search</button>
+  
+  <div class="search-container">
+    <div>
+      <input type="text" placeholder="Search the website..." onfocus="alert('haha you think I actually bothered to code this? no way'); this.blur();">
+      <button>Search</button>
+    </div>
+    <div id="clock">00:00:00</div>
   </div>
+
   <ul>
     <li><a href="https://www.google.com/maps" target="_blank">Google Maps</a></li>
     <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
@@ -48,6 +70,20 @@
     <li><a href="https://facebook.com/" target="_blank">Facebook</a></li>
   </ul>
 </div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-GB', { 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit' 
+    });
+    document.getElementById('clock').textContent = timeString;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
 
 </body>
 </html>
